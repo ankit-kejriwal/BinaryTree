@@ -102,6 +102,20 @@ public class BinarySearchTree {
         }
     }
 
+    public boolean searchKey(int val,Node root) {
+        boolean flag = false;
+        if(root == null){
+            flag = false;
+        } else if(root.key == val){
+            flag = true;
+        } else if(val<root.key){
+            flag = searchKey(val,root.left);
+        } else {
+            flag = searchKey(val,root.right);
+        }
+        return flag;
+    }
+
     public static void main(String[] args){
         BinarySearchTree binarySearchTree = new BinarySearchTree();
         binarySearchTree.insert(11);
@@ -131,5 +145,10 @@ public class BinarySearchTree {
         System.out.println("InOrder");
         binarySearchTree.inOrderIterative(binarySearchTree.root);
         System.out.println();
+        if(binarySearchTree.searchKey(9,binarySearchTree.root)) {
+            System.out.println("Element found");
+        } else {
+            System.out.println("Element not found");
+        }
     }
 }
